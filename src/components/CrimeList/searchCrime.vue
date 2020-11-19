@@ -8,12 +8,36 @@
                 <button class="btn-add block"><i class="fa fa-plus-square-o" aria-hidden="true"></i> ADD NEW CRIME</button>
             </div>
         </div>
+        <div class="row">
+            <div class="col-50p">
+                <Input />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-50p">
+                <Input />
+            </div>
+            <div class="col-25p">
+                <Input />
+            </div>
+            <div class="col-25p">
+                <Input />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-50p">
+                <Input />
+            </div>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({})
+import Input from '@/components/utils/inputComponent.vue'
+export default Vue.extend({
+  components: { Input }
+})
 </script>
 <style scoped>
 .container
@@ -24,17 +48,20 @@ export default Vue.extend({})
 .row{
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 .row-spaced{
     justify-content: space-between;
 }
 .col-25p{
-    width: 25%;
+    width: 24%;
     flex-basis: auto;
+    margin-right: 1%;
 }
 .col-50p{
-    width: 50%;
+    width: 49%;
     align-self: flex-end;
+    margin-right: 1%;
 }
 .title{
     text-align: left;
