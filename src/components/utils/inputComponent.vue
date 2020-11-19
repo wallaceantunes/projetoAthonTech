@@ -1,13 +1,14 @@
 <template>
     <div>
-        <label class="label-control">TEXT</label>
-        <input class="input-control" type="text" placeholder="Text">
+        <label class="label-control">{{label}}</label>
+        <input class="input-control" :type="type" :placeholder="placeholder">
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
+  props: ['icon', 'label', 'placeholder', 'type']
 
 })
 </script>
