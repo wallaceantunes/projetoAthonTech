@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div>
     <Header />
     <div class="content">
       <router-view />
@@ -23,11 +23,11 @@ export default Vue.extend({
 }
 .content{
   padding-top: 107px;
-  padding-bottom: 110px;
+  padding-bottom: 60px;
   padding-left: 32px;
   padding-right: 32px;
   background-color: #F1F9FF;
-  height: 100vh;
+  min-height: 100vh;
 }
 .pointer{
   cursor: pointer;

@@ -15,18 +15,18 @@
         </div>
         <div class="row">
             <div class="col-50p">
-                <Input icon="" label="Type of crime" placeholder="" type="text"/>
+                <Input icon="fa fa-folder-open" label="Type of crime" placeholder="" type="select"/>
             </div>
             <div class="col-25p">
-                <Input icon="" label="Date - From" placeholder="" type="date"/>
+                <Input icon="fa fa-calendar" label="Date - From" placeholder="" type="datetime-local"/>
             </div>
             <div class="col-25p">
-                <Input icon="" label="Date - To" placeholder="" type="date"/>
+                <Input icon="fa fa-calendar" label="Date - To" placeholder="" type="datetime-local"/>
             </div>
         </div>
         <div class="row">
             <div class="col-50p">
-                <Input icon="" label="Order By" placeholder="" type="text"/>
+                <Input icon="fa fa-sort-amount-asc" label="Order By" placeholder="" type="select"/>
             </div>
         </div>
         <div class="row">
