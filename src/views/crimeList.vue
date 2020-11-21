@@ -2,15 +2,15 @@
   <div>
     <SearchCrime />
     <br>
-    <CardCrime />
+    <CardCrimeList />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import SearchCrime from '@/components/CrimeList/searchCrime.vue'
-import CardCrime from '@/components/CrimeList/cardCrime.vue'
+import CardCrimeList from '@/components/CrimeList/cardCrimeList.vue'
 export default Vue.extend({
-  components: { SearchCrime, CardCrime }
+  components: { SearchCrime, CardCrimeList }
 })
 </script>

@@ -1,36 +1,36 @@
 <template>
     <div class="container">
         <div class="row row-spaced">
-            <div class="col-25p">
+            <div class="col-pc-25p">
                 <span class="title">CRIME LIST</span>
             </div>
-            <div class="col-25p">
+            <div class="col-pc-25p">
                 <button class="btn btn-add block"><i class="fa fa-plus-square-o" aria-hidden="true"></i> ADD NEW CRIME</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-50p">
+            <div class="col-pc-50p col-tb-100p">
                 <Input icon="" label="Text Filter" placeholder="Search for..." type="text"/>
             </div>
         </div>
         <div class="row">
-            <div class="col-50p">
+            <div class="col-pc-50p">
                 <Input icon="fa fa-folder-open" label="Type of crime" placeholder="" type="select"/>
             </div>
-            <div class="col-25p">
+            <div class="col-pc-25p">
                 <Input icon="fa fa-calendar" label="Date - From" placeholder="" type="datetime-local"/>
             </div>
-            <div class="col-25p">
+            <div class="col-pc-25p">
                 <Input icon="fa fa-calendar" label="Date - To" placeholder="" type="datetime-local"/>
             </div>
         </div>
         <div class="row">
-            <div class="col-50p">
+            <div class="col-pc-50p">
                 <Input icon="fa fa-sort-amount-asc" label="Order By" placeholder="" type="select"/>
             </div>
         </div>
         <div class="row">
-            <div class="col-25p">
+            <div class="col-pc-25p col-tb-100p">
                 <button class="btn btn-search block"><i class="fa fa-search" aria-hidden="true"></i> BUSCAR</button>
             </div>
         </div>
@@ -45,29 +45,6 @@ export default Vue.extend({
 })
 </script>
 <style scoped>
-.container
-{
-    display: flex;
-    flex-direction: column;
-}
-.row{
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-.row-spaced{
-    justify-content: space-between;
-}
-.col-25p{
-    width: 24%;
-    flex-basis: auto;
-    margin-right: 1%;
-}
-.col-50p{
-    width: 49%;
-    align-self: flex-end;
-    margin-right: 1%;
-}
 .title{
     text-align: left;
     font: normal normal bold 25px/25px Cinzel Decorative;
