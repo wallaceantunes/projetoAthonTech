@@ -29,6 +29,7 @@ export default Vue.extend({
   background-color: #F1F9FF;
   min-height: 100vh;
 }
+
 .pointer{
   cursor: pointer;
 }
@@ -40,6 +41,9 @@ export default Vue.extend({
     display: flex;
     flex-direction: column;
 }
+.row-margin{
+  margin-bottom: 20px;
+}
 .row{
     display: flex;
     flex-wrap: wrap;
@@ -48,34 +52,93 @@ export default Vue.extend({
 .row-spaced{
     justify-content: space-between;
 }
-.col-pc-25p{
-    width: 24%;
-    flex-basis: auto;
-    margin-right: 1%;
+.btn{
+    letter-spacing: 0px;
+    font: normal normal bold 14px/19px Cinzel Decorative;
+    border: none;
+    -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.31);
+    -moz-box-shadow:    3px 3px 6px 0px rgba(0, 0, 0, 0.31);
+    box-shadow:         3px 3px 6px 0px rgba(0, 0, 0, 0.31);
+    border-radius: 2px;
+    cursor: pointer;
 }
-.col-pc-50p{
-    width: 49%;
-    align-self: flex-end;
-    margin-right: 1%;
+.btn-add{
+    color: #313131;
+    background: #FCFC99;
 }
-.col-pc-100p{
-  width: 100%;
-  align-self: flex-end;
-}
-@media screen and (min-width: 768px) and (max-width: 1439px){
-.col-tb-25p{
-    width: 24%;
-    flex-basis: auto;
-    margin-right: 1%;
-}
-.col-tb-50p{
-    width: 49%;
-    flex-basis: auto;
-    margin-right: 1%;
-}
-.col-tb-100p{
+.block{
+    display: block;
     width: 100%;
-    flex-basis: auto;
+    height: 30px;
+
 }
+/* PC */
+@media screen and (min-width: 1024px){
+  .col-pc-25p{
+      width: 24%;
+      flex-basis: auto;
+      margin-right: 1%;
+
+  }
+  .col-pc-50p{
+      width: 49%;
+      align-self: flex-end;
+      margin-right: 1%;
+
+  }
+  .col-pc-100p{
+    width: 100%;
+    align-self: flex-end;
+
+  }
+  .hidden-pc{
+    display: none;
+  }
+}
+/* TABLET */
+@media screen and (min-width: 700px) and (max-width: 1023px){
+  .col-tb-25p{
+      width: 24%;
+      flex-basis: auto;
+      margin-right: 1%;
+
+  }
+  .col-tb-50p{
+      width: 49%;
+      flex-basis: auto;
+      margin-right: 1%;
+
+  }
+  .col-tb-100p{
+      width: 100%;
+      flex-basis: auto;
+
+  }
+  .hidden-tb{
+    display: none;
+  }
+}
+/* CELULAR */
+@media screen and (max-width: 699px){
+  .col-mb-25p{
+      width: 24%;
+      flex-basis: auto;
+      margin-right: 1%;
+
+  }
+  .col-mb-50p{
+      width: 49%;
+      flex-basis: auto;
+      margin-right: 1%;
+
+  }
+  .col-mb-100p{
+      width: 100%;
+      flex-basis: auto;
+
+  }
+  .hidden-mb{
+    display: none;
+  }
 }
 </style>

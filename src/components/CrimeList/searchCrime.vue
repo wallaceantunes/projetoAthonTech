@@ -1,37 +1,58 @@
 <template>
     <div class="container">
         <div class="row row-spaced">
-            <div class="col-pc-25p">
+            <div class="col-pc-25p col-tb-100p col-mb-100p">
                 <span class="title">CRIME LIST</span>
             </div>
+            <div class="col-pc-25p hidden-tb hidden-mb">
+                <button class="btn btn-add block">
+                    <i class="fa fa-plus-square-o" aria-hidden="true" />
+                     ADD NEW CRIME
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-pc-50p col-tb-100p col-mb-100p">
+                <Input label="Text Filter" placeholder="Search for..." type="text"/>
+            </div>
+        </div>
+        <!-- INPUTS PC -->
+        <div class="row hidden-mb hidden-tb">
+            <div class="col-pc-50p col-tb-25p col-mb-50p row-margin">
+                <Input icon="fa fa-folder-open" label="Type of crime" type="select"/>
+            </div>
             <div class="col-pc-25p">
-                <button class="btn btn-add block"><i class="fa fa-plus-square-o" aria-hidden="true"></i> ADD NEW CRIME</button>
+                <Input icon="fa fa-calendar" label="Date - From" type="datetime-local"/>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-pc-50p col-tb-100p">
-                <Input icon="" label="Text Filter" placeholder="Search for..." type="text"/>
+            <div class="col-pc-25p">
+                <Input icon="fa fa-calendar" label="Date - To" type="datetime-local"/>
             </div>
-        </div>
-        <div class="row">
             <div class="col-pc-50p">
-                <Input icon="fa fa-folder-open" label="Type of crime" placeholder="" type="select"/>
+                <Input icon="fa fa-sort-amount-asc" label="Order By" type="select"/>
             </div>
-            <div class="col-pc-25p">
-                <Input icon="fa fa-calendar" label="Date - From" placeholder="" type="datetime-local"/>
+        </div>
+        <!-- INPUTS CELULAR E TABLET -->
+        <div class="row hidden-pc">
+            <div class="col-tb-25p col-mb-50p hidden-tb">
+                <Input  icon="fa fa-folder-open" label="Type of crime" type="select"/>
             </div>
-            <div class="col-pc-25p">
-                <Input icon="fa fa-calendar" label="Date - To" placeholder="" type="datetime-local"/>
+            <div class="col-tb-25p col-mb-50p row-margin">
+                <Input  icon="fa fa-calendar" label="Date" type="datetime-local"/>
+            </div>
+            <div class="col-tb-25p col-mb-50p hidden-mb">
+                <Input  icon="fa fa-folder-open" label="Type of crime" type="select"/>
+            </div>
+            <div class="col-tb-25p"/>
+            <div class="col-tb-25p col-mb-50p">
+                <Input icon="fa fa-sort-amount-asc" label="Order By" type="select"/>
             </div>
         </div>
         <div class="row">
-            <div class="col-pc-50p">
-                <Input icon="fa fa-sort-amount-asc" label="Order By" placeholder="" type="select"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-pc-25p col-tb-100p">
-                <button class="btn btn-search block"><i class="fa fa-search" aria-hidden="true"></i> BUSCAR</button>
+            <div class="col-pc-25p col-tb-100p col-mb-100p">
+                <button class="btn btn-search block">
+                    <i class="fa fa-search" aria-hidden="true" />
+                    <span class="hidden-mb">BUSCAR</span>
+                </button>
             </div>
         </div>
     </div>
@@ -52,27 +73,8 @@ export default Vue.extend({
     color: #313131;
     opacity: 1;
 }
-.btn{
-    letter-spacing: 0px;
-    font: normal normal bold 14px/19px Cinzel Decorative;
-    border: none;
-    -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.31);
-    -moz-box-shadow:    3px 3px 6px 0px rgba(0, 0, 0, 0.31);
-    box-shadow:         3px 3px 6px 0px rgba(0, 0, 0, 0.31);
-    border-radius: 2px;
-}
-.btn-add{
-    color: #313131;
-    background: #FCFC99;
-}
 .btn-search{
     color: #313131;
     background: #F1F9FF;
-}
-.block{
-    display: block;
-    width: 100%;
-    height: 30px;
-
 }
 </style>
