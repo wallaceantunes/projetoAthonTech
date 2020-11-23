@@ -1,6 +1,6 @@
 <template>
-    <div class="footer">
-        <div class="row hidden-pc">
+    <div v-if="nomeRota !== 'modalMobile'" class="footer">
+        <div v-if="nomeRota === 'crimeList'" class="row hidden-pc">
             <div class="col-tb-100p col-mb-100p">
                 <button class="btn btn-add block">
                     <i class="fa fa-plus-square-o" aria-hidden="true" />
@@ -8,9 +8,37 @@
                 </button>
             </div>
         </div>
+        <div v-if="nomeRota === 'newCrime'" class="row hidden-pc hidden-tb">
+            <div class="col-tb-100p col-mb-100p">
+                <button class="btn btn-add block">
+                    <i class="fa fa-plus-square-o" aria-hidden="true" />
+                    SAVE NEW CRIME
+                </button>
+            </div>
+        </div>
+        <div v-if="nomeRota === 'newWeapon'" class="row hidden-pc hidden-tb">
+            <div class="col-tb-100p col-mb-100p">
+                <button class="btn btn-add block">
+                    <i class="fa fa-plus-square-o" aria-hidden="true" />
+                    SAVE NEW WEAPON
+                </button>
+            </div>
+        </div>
     </div>
 </template>
-
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  data () {
+    return {
+      nomeRota: null
+    }
+  },
+  mounted () {
+    this.nomeRota = (this.$router as any).history.current.name
+  }
+})
+</script>
 <style scoped>
 .footer{
     position: fixed;

@@ -1,9 +1,7 @@
 <template>
   <div>
     <Header />
-    <div class="content">
-      <router-view />
-    </div>
+    <router-view class="content" />
     <Footer />
   </div>
 </template>
@@ -22,19 +20,24 @@ export default Vue.extend({
   box-sizing: border-box;
 }
 .content{
-  padding-top: 107px;
+  padding-top: 90px;
   padding-bottom: 60px;
   padding-left: 32px;
   padding-right: 32px;
   background-color: #F1F9FF;
   min-height: 100vh;
 }
-
 .pointer{
   cursor: pointer;
 }
 .text-center{
   text-align: center;
+}
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
 }
 .container
 {
@@ -64,7 +67,11 @@ export default Vue.extend({
 }
 .btn-add{
     color: #313131;
-    background: #FCFC99;
+    background-color: #FCFC99;
+}
+.btn-white{
+  color: #2699FB;
+  background-color: #FAFAFA;
 }
 .block{
     display: block;
@@ -109,6 +116,12 @@ export default Vue.extend({
       margin-right: 1%;
 
   }
+  .col-tb-75p{
+      width: 74%;
+      flex-basis: auto;
+      margin-right: 1%;
+
+  }
   .col-tb-100p{
       width: 100%;
       flex-basis: auto;
@@ -132,6 +145,12 @@ export default Vue.extend({
       margin-right: 1%;
 
   }
+  .col-mb-75p{
+      width: 74%;
+      flex-basis: auto;
+      margin-right: 1%;
+
+  }
   .col-mb-100p{
       width: 100%;
       flex-basis: auto;
@@ -140,5 +159,15 @@ export default Vue.extend({
   .hidden-mb{
     display: none;
   }
+  .btn{
+    letter-spacing: 0px;
+    font: normal normal bold 12px/19px Cinzel Decorative;
+    border: none;
+    -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.31);
+    -moz-box-shadow:    3px 3px 6px 0px rgba(0, 0, 0, 0.31);
+    box-shadow:         3px 3px 6px 0px rgba(0, 0, 0, 0.31);
+    border-radius: 2px;
+    cursor: pointer;
+}
 }
 </style>
