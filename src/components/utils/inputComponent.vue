@@ -6,7 +6,14 @@
         </div>
         <div v-else>
             <select class="input-control">
-                <option value="volvo">Volvo</option>
+                <option value="">{{optionPlaceHolder}}</option>
+                <option
+                    v-for="option in options"
+                    :key="option.id"
+                    :value="option.id"
+                >
+                    {{option.text}}
+                </option>
             </select>
         </div>
     </div>
@@ -15,7 +22,7 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  props: ['icon', 'label', 'placeholder', 'type']
+  props: ['icon', 'label', 'placeholder', 'type', 'options', 'optionPlaceHolder']
 
 })
 </script>
