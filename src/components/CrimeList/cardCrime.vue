@@ -1,36 +1,39 @@
 <template>
-    <div class="modal">
-        <div class="card">
+    <div @click.prevent="closeModal" class="modal" :class="{active: isActive}">
+        <div @click.prevent="activeModal" class="card" :class="{active: isActive}">
             <div class="container">
-                <div class="row">
+                <div v-if="isActive" class="row row-spaced">
+                    <div class="col-pc-100p col-tb-100p text-right">
+                        <i class="fa fa-trash icon" aria-hidden="true" />
+                    </div>
                     <div class="col-pc-100p col-tb-100p">
                         <b class="title">Crime</b>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-pc-100p  col-tb-100p">
+                    <div class="col-pc-100p  col-tb-100p col-mb-100p">
                         <b>Mass Attack</b>
                     </div>
                     <br>
-                    <div class="col-pc-100p  col-tb-100p">
+                    <div class="col-pc-100p  col-tb-100p col-mb-100p">
                         Crime Type
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-pc-100p  col-tb-100p">
+                    <div class="col-pc-100p  col-tb-100p col-mb-100p">
                         1981/10/31 - 22:33:44
                     </div>
                     <br>
-                    <div class="col-pc-100p  col-tb-100p">
+                    <div class="col-pc-100p  col-tb-100p col-mb-100p">
                         Hogwards
                     </div>
                 </div>
-                <!-- <div class="row">
+                <div v-if="isActive" class="row">
                     <div class="col-pc-100p  col-tb-100p">
                         <b class="title">CRIMINAL</b>
                     </div>
                 </div>
-                <div class="row">
+                <div v-if="isActive" class="row">
                     <div class="col-pc-25p col-tb-25p">
                         <img class="rounded" src="https://via.placeholder.com/100x100" alt="">
                     </div>
@@ -52,12 +55,12 @@
                         <p>nome</p>
                     </div>
                 </div>
-                 <div class="row">
+                 <div v-if="isActive" class="row">
                     <div class="col-pc-100p col-tb-100p">
                         <b class="title">VICTIM</b>
                     </div>
                 </div>
-                <div class="row">
+                <div v-if="isActive" class="row">
                     <div class="col-pc-25p col-tb-25p">
                         <img class="rounded" src="https://via.placeholder.com/100x100" alt="">
                     </div>
@@ -78,22 +81,43 @@
                         <p>nome</p>
                         <p>nome</p>
                     </div>
-                </div> -->
-                <div class="row icon-left">
-                    <i class="fa fa-search-plus" aria-hidden="true" />
+                </div>
+                <div v-if="!isActive" class="row">
+                    <div class="col-pc-100p col-tb-100p col-mb-100p text-right">
+                        <i class="fa fa-search-plus icon" aria-hidden="true" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script>
-export default {
-
-}
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  data () {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    activeModal () {
+      this.isActive = true
+    },
+    closeModal (event: MouseEvent) {
+      const el = event.target as Element
+      if (el.classList.contains('modal') && el.classList.contains('active')) {
+        this.isActive = false
+      }
+    }
+  }
+})
 </script>
 
 <style scoped>
+.modal{
+    transition: 0.5s;
+}
 .modal.active{
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -103,7 +127,6 @@ export default {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 .card{
@@ -122,13 +145,11 @@ export default {
     font: normal normal medium 15px/19px Montserrat;
     cursor: pointer;
 }
-
 .title{
     font-size: 22px;
     color: #313131;
 }
-.icon-left{
-    justify-content: flex-end;
+.icon{
     color: #2699FB;
 }
 .rounded{

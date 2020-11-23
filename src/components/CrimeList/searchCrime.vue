@@ -19,7 +19,13 @@
         <!-- INPUTS PC -->
         <div class="row hidden-mb hidden-tb">
             <div class="col-pc-50p col-tb-25p col-mb-50p row-margin">
-                <Input icon="fa fa-folder-open" label="Type of crime" type="select"/>
+                <Input
+                    icon="fa fa-folder-open"
+                    label="Type of crime"
+                    type="select"
+                    :options="optionTypeCrime"
+                    optionPlaceHolder="All Crimes"
+                />
             </div>
             <div class="col-pc-25p">
                 <Input icon="fa fa-calendar" label="Date - From" type="datetime-local"/>
@@ -34,13 +40,25 @@
         <!-- INPUTS CELULAR E TABLET -->
         <div class="row hidden-pc">
             <div class="col-tb-25p col-mb-50p hidden-tb">
-                <Input  icon="fa fa-folder-open" label="Type of crime" type="select"/>
+                <Input
+                    icon="fa fa-folder-open"
+                    label="Type of crime"
+                    type="select"
+                    :options="optionTypeCrime"
+                    optionPlaceHolder="All Crimes"
+                />
             </div>
             <div class="col-tb-25p col-mb-50p row-margin">
                 <Input  icon="fa fa-calendar" label="Date" type="datetime-local"/>
             </div>
             <div class="col-tb-25p col-mb-50p hidden-mb">
-                <Input  icon="fa fa-folder-open" label="Type of crime" type="select"/>
+                <Input
+                    icon="fa fa-folder-open"
+                    label="Type of crime"
+                    type="select"
+                    :options="optionTypeCrime"
+                    optionPlaceHolder="All Crimes"
+                />
             </div>
             <div class="col-tb-25p"/>
             <div class="col-tb-25p col-mb-50p">
@@ -60,9 +78,39 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { StoreState } from '@/domain/model/storeState'
 import Input from '@/components/utils/inputComponent.vue'
+import { getCrimeTypes } from '@/store/actions'
+import { mapState } from 'vuex'
+import { CrimeType } from '@/domain/model/crimeType'
+interface Data {
+    optionTypeCrime: Array<{id: number; text: string}>;
+}
 export default Vue.extend({
-  components: { Input }
+  components: { Input },
+  data (): Data {
+    return {
+      optionTypeCrime: []
+    }
+  },
+  computed: {
+    ...mapState({
+      crimeTypes: (state) => (state as StoreState).crimeTypeModule.crimeTypes
+    })
+  },
+  watch: {
+    crimeTypes (newValue: Array<CrimeType>) {
+      if (newValue) {
+        this.optionTypeCrime = newValue.map((ele) => ({
+          id: ele.idCrimeType,
+          text: ele.txType
+        }))
+      }
+    }
+  },
+  mounted () {
+    this.$store.dispatch(getCrimeTypes)
+  }
 })
 </script>
 <style scoped>
