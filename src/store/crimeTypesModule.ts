@@ -3,8 +3,9 @@ import { Module } from 'vuex'
 import { CrimeType } from '@/domain/model/crimeType'
 import { getCrimeTypes } from './actions'
 import { setCrimeTypes } from './mutations'
+import { CrimeTypeState } from '@/domain/model/crimeTypeState'
 
-export const crimeTypeModule: Module<{crimeTypes: Array<CrimeType>}, {}> = {
+export const crimeTypeModule: Module<CrimeTypeState, {}> = {
   state: {
     crimeTypes: []
   },
@@ -27,7 +28,7 @@ export const crimeTypeModule: Module<{crimeTypes: Array<CrimeType>}, {}> = {
           idCrimeType: criminalType.id_crime_type,
           txType: criminalType.tx_type
         }))
-      context.commit('setCrimeTypes', criminalTypeArray)
+      context.commit(setCrimeTypes, criminalTypeArray)
     }
   }
 }
