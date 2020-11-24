@@ -5,7 +5,7 @@
                 <span class="title">CRIME LIST</span>
             </div>
             <div class="col-pc-25p hidden-tb hidden-mb">
-                <button class="btn btn-add block">
+                <button class="btn btn-add block" @click="addNewCrime()">
                     <i class="fa fa-plus-square-o" aria-hidden="true" />
                      ADD NEW CRIME
                 </button>
@@ -110,6 +110,11 @@ export default Vue.extend({
   },
   mounted () {
     this.$store.dispatch(getCrimeTypes)
+  },
+  methods: {
+    addNewCrime () {
+      this.$router.push({ path: '/new-crime', name: 'newCrime' })
+    }
   }
 })
 </script>
