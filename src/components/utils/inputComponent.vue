@@ -2,11 +2,21 @@
     <div>
         <label class="label-control"><i v-if="icon" :class="icon" aria-hidden="true"></i> {{label}}</label>
         <div v-if="type !== 'select'">
-            <input class="input-control" :type="type" :placeholder="placeholder">
+            <input
+                class="input-control"
+                :type="type"
+                :placeholder="placeholder"
+                v-bind:value="value"
+                v-on:input="$emit('input', $event.target.value)"
+            >
         </div>
         <div v-else>
-            <select class="input-control">
-                <option value="">{{optionPlaceHolder}}</option>
+            <select
+                class="input-control"
+                v-bind:value="value"
+                v-on:input="$emit('input', $event.target.value)"
+            >
+                <option v-if="optionPlaceHolder" value="">{{optionPlaceHolder}}</option>
                 <option
                     v-for="option in options"
                     :key="option.id"
@@ -22,7 +32,7 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  props: ['icon', 'label', 'placeholder', 'type', 'options', 'optionPlaceHolder']
+  props: ['icon', 'label', 'placeholder', 'type', 'options', 'optionPlaceHolder', 'value']
 
 })
 </script>

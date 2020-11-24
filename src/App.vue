@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-color">
     <Header />
     <router-view class="content" />
     <Footer />
@@ -18,6 +18,9 @@ export default Vue.extend({
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.bg-color{
+  background-color: #F1F9FF ;
 }
 .content{
   padding-top: 90px;
@@ -78,6 +81,18 @@ export default Vue.extend({
     width: 100%;
     height: 30px;
 
+}
+@media screen and (min-width: 1456px) {
+  .content{
+    padding-top: 90px;
+    padding-bottom: 60px;
+    padding-left: 32px;
+    padding-right: 32px;
+    background-color: #F1F9FF;
+    max-width: 1456px;
+    min-height: 100vh;
+    margin: auto;
+  }
 }
 /* PC */
 @media screen and (min-width: 1024px){

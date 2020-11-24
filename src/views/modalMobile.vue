@@ -55,8 +55,12 @@
 </template>
 
 <script lang="ts">
+import { getNameRouter } from '@/store/actions'
 import Vue from 'vue'
 export default Vue.extend({
+  mounted () {
+    this.$store.dispatch(getNameRouter, (this.$router as any).history.current.name)
+  }
 })
 </script>
 

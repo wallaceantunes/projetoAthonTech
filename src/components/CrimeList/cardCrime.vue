@@ -16,16 +16,16 @@
                     </div>
                     <br>
                     <div class="col-pc-100p  col-tb-100p col-mb-100p">
-                        Crime Type
+                        {{content.criminalCrimeTypes}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-pc-100p  col-tb-100p col-mb-100p">
-                        1981/10/31 - 22:33:44
+                        {{content.crimeDate}}
                     </div>
                     <br>
                     <div class="col-pc-100p  col-tb-100p col-mb-100p">
-                        Hogwards
+                        {{content.country}}
                     </div>
                 </div>
                 <div v-if="isActive" class="row">
@@ -95,10 +95,14 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
+  props: ['content'],
   data () {
     return {
       isActive: false
     }
+  },
+  mounted () {
+    console.log(this.content)
   },
   methods: {
     activeModal () {

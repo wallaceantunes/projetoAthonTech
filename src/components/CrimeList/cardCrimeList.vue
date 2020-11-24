@@ -1,11 +1,12 @@
 <template>
   <div class="container">
     <div class="row">
-        <div class="col-pc-25p col-tb-50p col-mb-100p row-margin slideInUp">
-            <Card />
-        </div>
-        <div class="col-pc-25p col-tb-50p col-mb-100p row-margin slideInUp">
-            <Card />
+        <div
+          v-for="(cardCrime, index) in crimes"
+          :key="index"
+          class="col-pc-25p col-tb-50p col-mb-100p row-margin slideInUp"
+        >
+            <Card :content="cardCrime" />
         </div>
     </div>
   </div>
@@ -14,8 +15,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import Card from '@/components/CrimeList/cardCrime.vue'
+import { mapState } from 'vuex'
+import { StoreState } from '@/domain/model/storeState'
 export default Vue.extend({
-  components: { Card }
+  components: { Card },
+  computed: {
+    ...mapState({
+      crimes: (state) => (state as StoreState).crimeModule.crimes
+    })
+  }
 })
 </script>
 

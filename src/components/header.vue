@@ -1,30 +1,40 @@
 <template>
   <div class="header">
-    <img v-if="nomeRota === 'crimeList'" class="logo" src="../../public/images/logo-crime-maneger.png">
-    <div v-if="nomeRota !== 'crimeList'" class="container">
+    <img v-if="nameRouter === 'crimeList'" class="logo" src="../../public/images/logo-crime-maneger.png">
+    <div v-if="nameRouter !== 'crimeList'" class="container">
       <div class="row row-center">
         <div class="col-tb-25p col-mb-25p">
-          <button class="btn btn-back">
+          <button class="btn btn-back" @click="backPage()">
             <i class="fa fa-arrow-left" aria-hidden="true" />
           </button>
         </div>
         <div class="col-tb-75p col-mb-75p title hidden-pc hidden-tb">
-          <b>Nome da Rota</b>
+          <b>{{nameRouter}}</b>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
+import { StoreState } from '@/domain/model/storeState'
 import Vue from 'vue'
+import { mapState } from 'vuex'
 export default Vue.extend({
-  data () {
-    return {
-      nomeRota: null
-    }
+  computed: {
+    ...mapState({
+      nameRouter: (state) => (state as StoreState).configModule.nameRouter
+    })
   },
-  mounted () {
-    this.nomeRota = (this.$router as any).history.current.name
+  methods: {
+    backPage () {
+      if (this.nameRouter === 'newCrime') {
+        this.$router.push({ path: '/' })
+      } else if (this.nameRouter === 'newWeapon') {
+        this.$router.push({ path: '/new-crime' })
+      } else if (this.nameRouter === 'modalMobile') {
+        this.$router.push({ path: '/' })
+      }
+    }
   }
 })
 </script>
@@ -37,7 +47,7 @@ export default Vue.extend({
     box-shadow: 0px 3px 3px #00000029;
 }
 .logo{
-    padding-left: 20px
+    padding-left: 20px;
 }
 .btn-back{
     color: #313131;

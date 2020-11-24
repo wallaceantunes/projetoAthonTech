@@ -11,4 +11,20 @@ export class HttpProvider {
       data: resp.data
     }
   }
+
+  async post<T> (url: string, body: object): Promise<HttpResponse<T>> {
+    const resp = await API.post<T>(url, body)
+    return {
+      status: resp.status,
+      data: resp.data
+    }
+  }
+
+  async delete<T> (url: string, query?: Record<string, string>): Promise<HttpResponse<T>> {
+    const resp = await API.delete<T>(url, { params: query })
+    return {
+      status: resp.status,
+      data: resp.data
+    }
+  }
 }

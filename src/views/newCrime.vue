@@ -35,9 +35,13 @@ import Vue from 'vue'
 import Input from '@/components/utils/inputComponent.vue'
 import Criminal from '@/components/NewCrime/criminalComponent.vue'
 import Victim from '@/components/NewCrime/victimComponent.vue'
+import { getNameRouter } from '@/store/actions'
 
 export default Vue.extend({
-  components: { Input, Criminal, Victim }
+  components: { Input, Criminal, Victim },
+  mounted () {
+    this.$store.dispatch(getNameRouter, (this.$router as any).history.current.name)
+  }
 })
 </script>
 

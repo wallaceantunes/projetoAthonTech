@@ -13,7 +13,11 @@
         </div>
         <div class="row">
             <div class="col-pc-50p col-tb-100p col-mb-100p">
-                <Input label="Text Filter" placeholder="Search for..." type="text"/>
+                <Input
+                    label="Text Filter"
+                    placeholder="Search for..."
+                    type="text"
+                />
             </div>
         </div>
         <!-- INPUTS PC -->
@@ -25,16 +29,37 @@
                     type="select"
                     :options="optionTypeCrime"
                     optionPlaceHolder="All Crimes"
+                    :value="crimeType"
+                    v-model="crimeType"
                 />
             </div>
             <div class="col-pc-25p">
-                <Input icon="fa fa-calendar" label="Date - From" type="datetime-local"/>
+                <Input
+                    icon="fa fa-calendar"
+                    label="Date - From"
+                    type="datetime-local"
+                    :value="initialDate"
+                    v-model="initialDate"
+                />
             </div>
             <div class="col-pc-25p">
-                <Input icon="fa fa-calendar" label="Date - To" type="datetime-local"/>
+                <Input
+                    icon="fa fa-calendar"
+                    label="Date - To"
+                    type="datetime-local"
+                    :value="finalDate"
+                    v-model="finalDate"
+                />
             </div>
             <div class="col-pc-50p">
-                <Input icon="fa fa-sort-amount-asc" label="Order By" type="select"/>
+                <Input
+                    icon="fa fa-sort-amount-asc"
+                    label="Order By"
+                    type="select"
+                    :options="optionOrderBy"
+                    :value="orderBy"
+                    v-model="orderBy"
+                />
             </div>
         </div>
         <!-- INPUTS CELULAR E TABLET -->
@@ -53,8 +78,8 @@
             </div>
             <div class="col-tb-25p col-mb-50p hidden-mb">
                 <Input
-                    icon="fa fa-folder-open"
-                    label="Type of crime"
+                    icon="fa fa-sort-amount-asc"
+                    label="Order By"
                     type="select"
                     :options="optionTypeCrime"
                     optionPlaceHolder="All Crimes"
@@ -67,7 +92,7 @@
         </div>
         <div class="row">
             <div class="col-pc-25p col-tb-100p col-mb-100p">
-                <button class="btn btn-search block">
+                <button class="btn btn-search block" @click="search()">
                     <i class="fa fa-search" aria-hidden="true" />
                     <span class="hidden-mb">BUSCAR</span>
                 </button>
@@ -80,17 +105,43 @@
 import Vue from 'vue'
 import { StoreState } from '@/domain/model/storeState'
 import Input from '@/components/utils/inputComponent.vue'
-import { getCrimeTypes } from '@/store/actions'
+import { getCrimeTypes, getNameRouter, searchCrime } from '@/store/actions'
 import { mapState } from 'vuex'
 import { CrimeType } from '@/domain/model/crimeType'
+import moment from 'moment'
 interface Data {
     optionTypeCrime: Array<{id: number; text: string}>;
+    optionOrderBy: Array<{id: string; text: string}>;
+    crimeType: number | null;
+    initialDate: Date | null;
+    finalDate: Date | null;
+    orderBy: string | null;
 }
 export default Vue.extend({
   components: { Input },
   data (): Data {
     return {
-      optionTypeCrime: []
+      optionTypeCrime: [],
+      optionOrderBy: [{
+        id: 'Date',
+        text: 'Date'
+      }, {
+        id: 'Weapon',
+        text: 'Weapon'
+      }, {
+        id: 'Criminal',
+        text: 'Criminal'
+      }, {
+        id: 'Victim',
+        text: 'Victim'
+      }, {
+        id: 'Country',
+        text: 'Country'
+      }],
+      crimeType: null,
+      initialDate: null,
+      finalDate: null,
+      orderBy: null
     }
   },
   computed: {
@@ -110,10 +161,20 @@ export default Vue.extend({
   },
   mounted () {
     this.$store.dispatch(getCrimeTypes)
+    this.$store.dispatch(getNameRouter, (this.$router as any).history.current.name)
   },
   methods: {
     addNewCrime () {
-      this.$router.push({ path: '/new-crime', name: 'newCrime' })
+      this.$router.push({ path: '/new-crime' })
+    },
+    search () {
+      const params = {
+        crimeType: this.crimeType,
+        initialDate: moment(this.initialDate).format('YYYY-MM-DD HH:MM:SS'),
+        finalDate: moment(this.finalDate).format('YYYY-MM-DD HH:MM:SS'),
+        orderBy: this.orderBy
+      }
+      this.$store.dispatch(searchCrime, params)
     }
   }
 })

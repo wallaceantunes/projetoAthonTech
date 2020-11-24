@@ -28,9 +28,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import Input from '@/components/utils/inputComponent.vue'
+import { getNameRouter } from '@/store/actions'
 
 export default Vue.extend({
-  components: { Input }
+  components: { Input },
+  mounted () {
+    this.$store.dispatch(getNameRouter, (this.$router as any).history.current.name)
+  }
 })
 </script>
 
