@@ -1,5 +1,7 @@
-export interface SearchCrimeResponse {
-    data: {
+export interface SearchCrimesResponse {
+  data: {
+    crimes: Array<{
+      id_crime: number;
       country: string;
       crime_date: Date;
       weapons_crime: Array<{
@@ -13,5 +15,6 @@ export interface SearchCrimeResponse {
       victims_crime: Array<{
         victim: string;
       }>;
-    };
-  }
+    }>;
+  };
+}

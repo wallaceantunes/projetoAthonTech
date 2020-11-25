@@ -71,23 +71,40 @@
                     type="select"
                     :options="optionTypeCrime"
                     optionPlaceHolder="All Crimes"
+                    :value="crimeType"
+                    v-model="crimeType"
                 />
             </div>
             <div class="col-tb-25p col-mb-50p row-margin">
-                <Input  icon="fa fa-calendar" label="Date" type="datetime-local"/>
+                <Input
+                  icon="fa fa-calendar"
+                  label="Date"
+                  type="datetime-local"
+                  :value="initialDate"
+                  v-model="initialDate"
+                />
             </div>
             <div class="col-tb-25p col-mb-50p hidden-mb">
                 <Input
-                    icon="fa fa-sort-amount-asc"
-                    label="Order By"
+                    icon="fa fa-folder-open"
+                    label="Type of crime"
                     type="select"
                     :options="optionTypeCrime"
                     optionPlaceHolder="All Crimes"
+                    :value="crimeType"
+                    v-model="crimeType"
                 />
             </div>
             <div class="col-tb-25p"/>
             <div class="col-tb-25p col-mb-50p">
-                <Input icon="fa fa-sort-amount-asc" label="Order By" type="select"/>
+                <Input
+                    icon="fa fa-sort-amount-asc"
+                    label="Order By"
+                    type="select"
+                    :options="optionOrderBy"
+                    :value="orderBy"
+                    v-model="orderBy"
+                />
             </div>
         </div>
         <div class="row">
@@ -108,14 +125,15 @@ import Input from '@/components/utils/inputComponent.vue'
 import { getCrimeTypes, getNameRouter, searchCrime } from '@/store/actions'
 import { mapState } from 'vuex'
 import { CrimeType } from '@/domain/model/crimeType'
+import { SearchParams } from '@/domain/model/searchParams'
 import moment from 'moment'
 interface Data {
     optionTypeCrime: Array<{id: number; text: string}>;
     optionOrderBy: Array<{id: string; text: string}>;
-    crimeType: number | null;
-    initialDate: Date | null;
-    finalDate: Date | null;
-    orderBy: string | null;
+    crimeType?: number;
+    initialDate?: Date;
+    finalDate?: Date;
+    orderBy?: string;
 }
 export default Vue.extend({
   components: { Input },
@@ -138,10 +156,10 @@ export default Vue.extend({
         id: 'Country',
         text: 'Country'
       }],
-      crimeType: null,
-      initialDate: null,
-      finalDate: null,
-      orderBy: null
+      crimeType: undefined,
+      initialDate: undefined,
+      finalDate: undefined,
+      orderBy: undefined
     }
   },
   computed: {
@@ -169,11 +187,11 @@ export default Vue.extend({
     },
     search () {
       const params = {
-        crimeType: this.crimeType,
-        initialDate: moment(this.initialDate).format('YYYY-MM-DD HH:MM:SS'),
-        finalDate: moment(this.finalDate).format('YYYY-MM-DD HH:MM:SS'),
-        orderBy: this.orderBy
-      }
+        crime_type: this.crimeType,
+        initial_datetime: this.initialDate ? moment(this.initialDate).format('YYYY-MM-DD HH:MM:SS') : undefined,
+        final_datetime: this.finalDate ? moment(this.finalDate).format('YYYY-MM-DD HH:MM:SS') : undefined,
+        order_by: this.orderBy
+      } as SearchParams
       this.$store.dispatch(searchCrime, params)
     }
   }
