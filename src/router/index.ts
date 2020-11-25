@@ -19,7 +19,7 @@ const routes: Array<RouteConfig> = [
     component: newCrime
   },
   {
-    path: '/modal-mobile',
+    path: '/modal-mobile/:id',
     name: 'modalMobile',
     component: modalMobile
   },
