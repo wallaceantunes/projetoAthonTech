@@ -40,7 +40,7 @@
                             :key="index"
                             class="col-pc-50p col-tb-50p row-margin"
                         >
-                            <img class="rounded" src="https://via.placeholder.com/100x100" >
+                            <img class="rounded" src="https://www.thispersondoesnotexist.com/image" width="100px" height="100px">
                             <p>{{criminal.criminal}}</p>
                             <p>Criminal</p>
                         </div>
@@ -71,7 +71,7 @@
                             :key="index"
                             class="col-pc-50p col-tb-50p row-margin"
                         >
-                            <img class="rounded" src="https://via.placeholder.com/100x100" >
+                            <img class="rounded" src="https://www.thispersondoesnotexist.com/image" width="100px" height="100px" >
                             <p>{{victim.victim}}</p>
                             <p>Victim</p>
                         </div>
