@@ -6,7 +6,7 @@
           :key="index"
           class="col-pc-25p col-tb-50p col-mb-100p row-margin slideInUp"
         >
-            <Card :content="cardCrime" />
+          <Card :content="cardCrime" />
         </div>
     </div>
   </div>
@@ -17,6 +17,7 @@ import Vue from 'vue'
 import Card from '@/components/CrimeList/cardCrime.vue'
 import { mapState } from 'vuex'
 import { StoreState } from '@/domain/model/storeState'
+// import ModalMobile from '@/views/modalMobile.vue'
 export default Vue.extend({
   components: { Card },
   computed: {

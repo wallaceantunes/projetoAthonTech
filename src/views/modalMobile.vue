@@ -5,11 +5,11 @@
         <div class="card">
             <div class="container">
                 <div class="row">
-                    <div class="col-mb-100p text-right">
+                    <div class="col-mb-100p text-right" @click="deleteCrime()">
                         <i class="fa fa-trash icon" aria-hidden="true" />
                     </div>
                     <div class="col-mb-100p">
-                        <b class="title">Mass Attack</b>
+                        <b class="title">{{crimeName}}</b>
                     </div>
                     <br>
                     <div class="col-mb-100p">
@@ -18,32 +18,44 @@
                 </div>
                 <div class="row">
                     <div class="col-mb-100p title">
-                        1981/10/31 - 22:33:44
+                        {{crime.crimeDate | formatDate}}
                     </div>
                     <br>
                     <div class="col-mb-100p">
-                        Hogwards
+                        {{crime.country}}
                     </div>
                 </div>
-                <div class="row">
+                <div
+                    v-for="(criminal, index) in criminals"
+                    :key="`criminal-${index}`"
+                    class="row"
+                >
                     <div class="col-mb-50p">
-                        <p class="title">nome</p>
-                        <p>nome</p>
+                        <p class="title">{{criminal.criminal}}</p>
+                        <p>Criminal</p>
                     </div>
                     <div class="col-mb-25p">
                         <img class="rounded" src="https://via.placeholder.com/50x50" alt="">
                     </div>
                 </div>
-                <div class="row">
+                <div
+                    v-for="(weapon, index) in weapons"
+                    :key="`weapon-${index}`"
+                    class="row"
+                >
                     <div class="col-mb-100p">
-                        <p class="title">nome</p>
-                        <p>nome</p>
+                        <p class="title">{{weapon.weapon}}</p>
+                        <p>{{weapon.weaponType}}</p>
                     </div>
                 </div>
-                <div class="row">
+                <div
+                    v-for="(victim, index) in victims"
+                    :key="`victim-${index}`"
+                    class="row"
+                >
                     <div class="col-mb-50p">
-                        <p class="title">nome</p>
-                        <p>nome</p>
+                        <p class="title">{{victim.victim}}</p>
+                        <p>Victim</p>
                     </div>
                     <div class="col-mb-25p">
                         <img class="rounded" src="https://via.placeholder.com/50x50" alt="">
@@ -55,11 +67,52 @@
 </template>
 
 <script lang="ts">
-import { getNameRouter } from '@/store/actions'
+import { StoreState } from '@/domain/model/storeState'
+import { deleteCrime, getNameRouter, searchCrime, searchCrimeById } from '@/store/actions'
 import Vue from 'vue'
+import { mapState } from 'vuex'
+import '@/utils/vueFilter'
 export default Vue.extend({
   mounted () {
+    this.$store.dispatch(searchCrimeById, this.$route.params.id)
     this.$store.dispatch(getNameRouter, (this.$router as any).history.current.name)
+  },
+  computed: {
+    ...mapState({
+      crime: (state) => (state as StoreState).crimeModule.crime
+    }),
+    crimeName () {
+      if (this.crime.criminalCrimeTypes) {
+        const name = this.crime.criminalCrimeTypes.map((ele: any) => ele.crimeType).join(' and ')
+        return name || 'Unknown crime'
+      }
+      return 'Unknown crime'
+    },
+    criminals () {
+      if (this.crime.victimsCrime) {
+        return this.crime.criminalCrimeTypes.map((ele: any) => ({ criminal: ele.criminal }))
+      }
+      return [{ criminal: 'Unknown Criminal' }]
+    },
+    weapons () {
+      if (this.crime.weaponsCrime) {
+        return this.crime.weaponsCrime.map((ele: any) => ({ weapon: ele.weapon, weaponType: ele.weaponType }))
+      }
+      return null
+    },
+    victims () {
+      if (this.crime.victimsCrime) {
+        return this.crime.victimsCrime
+      }
+      return [{ victim: 'No Victims' }]
+    }
+  },
+  methods: {
+    async deleteCrime () {
+      await this.$store.dispatch(deleteCrime, this.$route.params.id)
+      this.$store.dispatch(searchCrime)
+      this.$router.push({ path: '/' })
+    }
   }
 })
 </script>
