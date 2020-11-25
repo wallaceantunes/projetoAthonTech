@@ -3,7 +3,7 @@ import { VictimsCrime } from './victimsCrime'
 import { WeaponsCrime } from './weaponsCrime'
 
 export interface Crime {
-    idCrime: number;
+    idCrime?: number;
     country: string;
     crimeDate: Date;
     weaponsCrime: Array<WeaponsCrime>;
