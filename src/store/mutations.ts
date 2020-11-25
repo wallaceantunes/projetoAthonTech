@@ -1,3 +1,7 @@
 export const setCrimeTypes = 'setCrimeTypes'
 export const setNameRouter = 'setNameRouter'
 export const setCrimes = 'setCrimes'
+export const setCrime = 'setCrime'
+export const setWeapons = 'setWeapons'
+export const setVictims = 'setVictims'
+export const setCriminals = 'setCriminals'
