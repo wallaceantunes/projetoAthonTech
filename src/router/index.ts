@@ -1,22 +1,32 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
+import crimeList from '../views/crimeList.vue'
+import modalMobile from '../views/modalMobile.vue'
+import newCrime from '../views/newCrime.vue'
+import newWeapon from '../views/newWeapon.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'crimeList',
+    component: crimeList
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/new-crime',
+    name: 'newCrime',
+    component: newCrime
+  },
+  {
+    path: '/modal-mobile/:id',
+    name: 'modalMobile',
+    component: modalMobile
+  },
+  {
+    path: '/new-weapon',
+    name: 'newWeapon',
+    component: newWeapon
   }
 ]
 
