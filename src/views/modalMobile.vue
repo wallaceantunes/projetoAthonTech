@@ -35,7 +35,7 @@
                         <p>Criminal</p>
                     </div>
                     <div class="col-mb-25p">
-                        <img class="rounded" src="https://via.placeholder.com/50x50" alt="">
+                        <img class="rounded" src="https://www.thispersondoesnotexist.com/image" width="50px" height="50px">
                     </div>
                 </div>
                 <div
@@ -58,7 +58,7 @@
                         <p>Victim</p>
                     </div>
                     <div class="col-mb-25p">
-                        <img class="rounded" src="https://via.placeholder.com/50x50" alt="">
+                        <img class="rounded" src="https://www.thispersondoesnotexist.com/image" width="50px" height="50px">
                     </div>
                 </div>
             </div>

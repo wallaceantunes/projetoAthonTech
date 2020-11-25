@@ -11,15 +11,6 @@
                 </button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-pc-50p col-tb-100p col-mb-100p">
-                <Input
-                    label="Text Filter"
-                    placeholder="Search for..."
-                    type="text"
-                />
-            </div>
-        </div>
         <!-- INPUTS PC -->
         <div class="row hidden-mb hidden-tb">
             <div class="col-pc-50p col-tb-25p col-mb-50p row-margin">
